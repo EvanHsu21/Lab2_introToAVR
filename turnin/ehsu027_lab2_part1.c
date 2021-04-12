@@ -13,7 +13,7 @@
 #endif
 
 int main(void) {
-    /* Inse://www.youtube.com/watch?v=bWBlfSRlNC4t DDR and PORT initializations */
+    /* Insert: DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0x00;
 	DDRB = 0xFF; PORTB = 0x00;
     /* Insert your solution below */
