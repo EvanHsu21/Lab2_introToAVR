@@ -19,18 +19,16 @@ int main(void) {
 	DDRC = 0x00; PORTC = 0x00;
 	DDRD = 0xFF; PORTD = 0x00;
     /* Insert your solution below */
-	unsigned char weightLimit = 0x8C;
-	unsigned char totalWeight = 0x00;
-	unsigned char balanceWeight = 0x00;
-	unsigned char weightDifLimit = 0x50;
+	unsigned char weightLimit = 140;
+	unsigned char totalWeight = 0;
+	unsigned char weightDifLimit = 80;
     while (1) {
 	totalWeight = PINA + PINB + PINC;
-	balanceWeight = PINA + PINC;
 	PORTD = PORTD | totalWeight;
 	if (totalWeight > weightLimit) {
 		PORTD = PORTD | 0x01;
 	}
-	if (balanceWeight > weightDifLimit) {
+	if (((PINA - PINC) > weightDifLimit) || ((PINC - PINA) > weightDifLimit)) {
 		PORTD = PORTD | 0x02;
 	}
     }
