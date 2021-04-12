@@ -15,14 +15,23 @@
 int main(void) {
     /* Inse://www.youtube.com/watch?v=bWBlfSRlNC4t DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0x00;
-	DDRB = 0xFF; PORTB = 0x00;
+	DDRB = 0x00; PORTB = 0x00;
+	DDRC = 0x00; PORTC = 0x00;
+	DDRD = 0xFF; PORTD = 0x00;
     /* Insert your solution below */
+	unsigned char weightLimit = 0x8C;
+	unsigned char totalWeight = 0x00;
+	unsigned char balanceWeight = 0x00;
+	unsigned char weightDifLimit = 0x50;
     while (1) {
-	if (PINA == 0x01) {
-		PORTB = 0x01;
+	totalWeight = PINA + PINB + PINC;
+	balanceWeight = PINA + PINC;
+	PORTD = PORTD | totalWeight;
+	if (totalWeight > weightLimit) {
+		PORTD = PORTD | 0x01;
 	}
-	else {
-		PORTB = 0x00;
+	if (balanceWeight > weightDifLimit) {
+		PORTD = PORTD | 0x02;
 	}
     }
     return 1;
