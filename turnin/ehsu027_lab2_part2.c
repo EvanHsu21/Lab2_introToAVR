@@ -13,25 +13,25 @@
 #endif
 
 int main(void) {
-    /* Inse://www.youtube.com/watch?v=bWBlfSRlNC4t DDR and PORT initializations */
+    /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0x00;
 	DDRC = 0xFF; PORTC = 0x00;
     /* Insert your solution below */
 	unsigned char cntavail = 0x00;
     while (1) {
-	cntavail = 0x00;
+	cntavail = 0x04;
 
 	if (PINA & 0x08) {
-		cntavail++;
+		cntavail--;
 	}
 	if (PINA & 0x04) {
-		cntavail++;
+		cntavail--;
 	}
 	if (PINA & 0x02) {
-		cntavail++;
+		cntavail--;
 	}
 	if (PINA & 0x01) {
-		cntavail++;
+		cntavail--;
 	}
 	PORTC = cntavail;
     }
