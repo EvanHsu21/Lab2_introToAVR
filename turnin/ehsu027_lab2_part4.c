@@ -24,8 +24,8 @@ int main(void) {
 	unsigned char weightDifLimit = 80;
     while (1) {
 	PORTD = 0x00;
-	totalWeight = PINA + PINB + PINC;
-	PORTD = totalWeight;
+	totalWeight = (PINA + PINB + PINC) ;
+	PORTD = totalWeight >> 2;
 	if (totalWeight > weightLimit) {
 		PORTD = PORTD | 0x01;
 	}
